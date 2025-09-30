@@ -85,13 +85,13 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      content: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      content: "+1 (847) 200-7458",
+      link: "tel:+18472007458",
     },
     {
       icon: MapPin,
       title: "Location",
-      content: "San Francisco, CA",
+      content: "Harrisonville, Missouri",
       link: null,
     },
   ];
