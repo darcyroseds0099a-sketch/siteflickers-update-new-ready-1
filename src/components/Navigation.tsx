@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import MagicBento from "./MagicBento";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,27 +36,50 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-2">
             {links.map((link) => (
-              <Link
+              <MagicBento
                 key={link.path}
-                to={link.path}
-                className={`relative text-sm font-medium transition-colors ${
-                  isActive(link.path) ? "text-primary" : "text-foreground hover:text-primary"
-                }`}
+                enableStars={true}
+                enableSpotlight={true}
+                enableBorderGlow={true}
+                enableTilt={false}
+                enableMagnetism={true}
+                spotlightRadius={200}
+                particleCount={8}
+                glowColor="0, 199, 255"
+                className="px-4 py-2 rounded-lg"
               >
-                {link.name}
-                {isActive(link.path) && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary glow-primary"
-                  />
-                )}
-              </Link>
+                <Link
+                  to={link.path}
+                  className={`relative text-sm font-medium transition-colors ${
+                    isActive(link.path) ? "text-primary" : "text-foreground hover:text-primary"
+                  }`}
+                >
+                  {link.name}
+                  {isActive(link.path) && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary glow-primary"
+                    />
+                  )}
+                </Link>
+              </MagicBento>
             ))}
-            <Button variant="default" className="glow-primary" asChild>
-              <Link to="/contact">Get Started</Link>
-            </Button>
+            <MagicBento
+              enableStars={true}
+              enableSpotlight={true}
+              enableBorderGlow={true}
+              enableTilt={false}
+              spotlightRadius={250}
+              particleCount={12}
+              glowColor="132, 0, 255"
+              className="rounded-lg"
+            >
+              <Button variant="default" className="glow-primary" asChild>
+                <Link to="/contact">Get Started</Link>
+              </Button>
+            </MagicBento>
           </div>
 
           {/* Mobile Menu Button */}
