@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import PaymentDialog from "@/components/PaymentDialog";
 
 const Pricing = () => {
   const navigate = useNavigate();
+  const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: string } | null>(null);
 
   const packages = [
     {
@@ -139,7 +142,7 @@ const Pricing = () => {
               </ul>
 
               <Button
-                onClick={() => navigate("/contact")}
+                onClick={() => setSelectedPlan({ name: pkg.name, price: pkg.price })}
                 className={`w-full ${
                   pkg.popular ? "glow-primary" : ""
                 }`}
@@ -175,6 +178,14 @@ const Pricing = () => {
           </Button>
         </motion.div>
       </div>
+
+      {/* Payment Dialog */}
+      <PaymentDialog
+        open={selectedPlan !== null}
+        onOpenChange={(open) => !open && setSelectedPlan(null)}
+        planName={selectedPlan?.name || ""}
+        price={selectedPlan?.price || ""}
+      />
     </main>
   );
 };

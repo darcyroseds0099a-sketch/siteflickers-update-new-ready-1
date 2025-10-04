@@ -1,56 +1,36 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Eye } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    description: "Modern online store with advanced filtering, cart management, and secure checkout",
-    image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?w=800&h=600&fit=crop",
-    tags: ["React", "Node.js", "Stripe", "MongoDB"],
-    liveUrl: "https://demo.vercel.store/",
-    githubUrl: "https://github.com/vercel/commerce",
+    title: "Achievement Marine",
+    description: "Premium marine equipment and yacht accessories marketplace",
+    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
+    tags: ["E-Commerce", "Marine", "Shopify"],
+    liveUrl: "https://achievementmarine.com/",
   },
   {
-    title: "SaaS Dashboard",
-    description: "Analytics dashboard with real-time data visualization and reporting tools",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-    tags: ["Next.js", "TypeScript", "Charts", "API"],
-    liveUrl: "https://vercel.com/templates/next.js/admin-dashboard-tailwind-postgres-react-nextjs",
-    githubUrl: "https://github.com/vercel/nextjs-postgres-nextauth-tailwindcss-template",
+    title: "Keto Chow",
+    description: "Complete nutritional meal replacement solution for ketogenic lifestyle",
+    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=600&fit=crop",
+    tags: ["Health", "E-Commerce", "Nutrition"],
+    liveUrl: "https://ketochow.xyz/",
   },
   {
-    title: "Real Estate Listings",
-    description: "Property search platform with interactive maps and advanced search filters",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
-    tags: ["React", "Google Maps", "Firebase"],
-    liveUrl: "https://realestate-demo.vercel.app/",
-    githubUrl: "https://github.com/adrianhajdin/projects_realestate",
+    title: "Bicycle Blue Book",
+    description: "The ultimate bicycle valuation and marketplace platform",
+    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=600&fit=crop",
+    tags: ["Marketplace", "Analytics", "Database"],
+    liveUrl: "https://www.bicyclebluebook.com/",
   },
   {
-    title: "Fitness Tracking App",
-    description: "Personal fitness companion with workout plans and progress tracking",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop",
-    tags: ["React Native", "Mobile", "HealthKit"],
-    liveUrl: "https://expo.dev/preview/fitness-app",
-    githubUrl: "https://github.com/catalinmiron/react-native-fitness-app",
-  },
-  {
-    title: "Social Media Platform",
-    description: "Community-driven platform with real-time messaging and content sharing",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop",
-    tags: ["React", "WebSocket", "Redis", "AWS"],
-    liveUrl: "https://social-app-demo.vercel.app/",
-    githubUrl: "https://github.com/clerkinc/clerk-nextjs-demo-app-router",
-  },
-  {
-    title: "AI Content Generator",
-    description: "AI-powered tool for generating marketing copy and creative content",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
-    tags: ["AI", "OpenAI", "Python", "FastAPI"],
-    liveUrl: "https://chat.openai.com/",
-    githubUrl: "https://github.com/openai/openai-python",
+    title: "Farm To People",
+    description: "Connecting local farms with communities for fresh, sustainable produce",
+    image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&h=600&fit=crop",
+    tags: ["Agriculture", "E-Commerce", "Local"],
+    liveUrl: "https://farmtopeople.com/",
   },
 ];
 
@@ -66,7 +46,7 @@ const Portfolio = () => {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Our <span className="text-gradient">Portfolio</span>
+            Our <span className="text-gradient">Projects</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Explore our latest projects and see how we transform ideas into exceptional digital experiences
@@ -115,20 +95,24 @@ const Portfolio = () => {
                   <div className="flex gap-4">
                     <motion.a
                       href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity"
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <Eye className="w-4 h-4" />
                       View Live
                     </motion.a>
                     <motion.a
-                      href={project.githubUrl}
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="flex items-center justify-center gap-2 px-4 py-2 border border-border rounded-lg font-medium hover:bg-muted transition-colors"
                     >
-                      <Github className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4" />
                     </motion.a>
                   </div>
                 </CardContent>

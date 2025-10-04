@@ -79,8 +79,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      content: "hello@siteflickers.com",
-      link: "mailto:hello@siteflickers.com",
+      content: "siteflicker@gmail.com",
+      link: "mailto:siteflicker@gmail.com",
     },
     {
       icon: Phone,
