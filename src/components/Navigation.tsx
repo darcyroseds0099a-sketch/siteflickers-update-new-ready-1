@@ -25,14 +25,14 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <motion.div
-              className="text-2xl font-bold text-gradient"
+          <Link to="/" className="flex items-center space-x-3">
+            <motion.img
+              src="/src/assets/siteflickers-logo.png"
+              alt="Siteflickers Logo"
+              className="h-10 w-auto"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
-            >
-              Siteflickers
-            </motion.div>
+            />
           </Link>
 
           {/* Desktop Navigation */}

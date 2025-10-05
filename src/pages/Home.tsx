@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Target, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Scene3D from "@/components/Scene3D";
+import Testimonials from "@/components/Testimonials";
 
 const Home = () => {
   return (
@@ -27,23 +28,22 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm border border-primary/20"
               >
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">
+                <span className="text-foreground font-medium">
                   Leading Digital Innovation
                 </span>
               </motion.div>
 
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
-                <span className="text-gradient">Transform</span> Your
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                Elevate Your Brand with
                 <br />
-                Digital Presence
+                <span className="text-gradient">Cutting-Edge Digital Solutions</span>
               </h1>
 
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-                Cutting-edge web development, AI integration, and digital marketing solutions
-                that propel your business into the future.
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+                Our mission is to design and develop exceptional digital experiences that showcase your brand's unique identity. Let's explore and grow your online business together.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -112,36 +112,45 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
+                icon: Zap,
                 title: "Innovative Design",
-                description: "Stunning, modern interfaces that captivate and convert",
+                description: "Stunning, modern interfaces that captivate your audience and drive conversions with cutting-edge design principles.",
               },
               {
-                title: "Cutting-Edge Tech",
-                description: "Latest technologies and frameworks for optimal performance",
+                icon: Target,
+                title: "Precision Development",
+                description: "Custom-built solutions using the latest technologies, ensuring your website performs flawlessly across all devices.",
               },
               {
+                icon: TrendingUp,
                 title: "Results-Driven",
-                description: "Data-backed strategies that deliver measurable growth",
+                description: "Data-backed strategies and SEO optimization that deliver measurable growth and maximize your ROI.",
               },
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card p-8 rounded-lg hover:glow-primary transition-all duration-300"
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 rounded bg-gradient-to-br from-primary to-secondary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </motion.div>
-            ))}
+            ].map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="glass-card p-8 rounded-lg hover:border-primary/50 transition-all duration-300 group"
+                >
+                  <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                    <Icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <Testimonials />
     </main>
   );
 };

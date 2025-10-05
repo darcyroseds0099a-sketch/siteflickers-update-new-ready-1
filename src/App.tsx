@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Navigation from "./components/Navigation";
 import DotGrid from "./components/DotGrid";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
@@ -26,8 +27,8 @@ const App = () => (
           <DotGrid
             dotSize={10}
             gap={15}
-            baseColor="#5227FF"
-            activeColor="#5227FF"
+            baseColor="#FFC107"
+            activeColor="#FFC107"
             proximity={120}
             shockRadius={250}
             shockStrength={5}
@@ -47,6 +48,7 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </AnimatePresence>
+            <Footer />
           </div>
         </div>
       </BrowserRouter>
