@@ -8,45 +8,46 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Professional Black & Gold Theme */
-    --background: 0 0% 5%;
-    --foreground: 0 0% 98%;
+    /* Siteflickers Electric Blue & Purple Theme */
+    --background: 210 15% 6%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 210 15% 8%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 210 15% 8%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Gold Primary */
-    --primary: 45 100% 51%;
+    /* Electric Blue Primary */
+    --primary: 194 100% 50%;
     --primary-foreground: 0 0% 0%;
-    --primary-glow: 45 100% 51%;
+    --primary-glow: 194 100% 60%;
+
+    /* Neon Purple Accent */
+    --accent: 276 88% 53%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 276 88% 63%;
 
     /* Dark Secondary */
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --secondary-glow: 0 0% 15%;
+    --secondary: 210 15% 12%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
-
-    /* Gold Accent */
-    --accent: 43 96% 56%;
-    --accent-foreground: 0 0% 0%;
+    --muted: 210 15% 10%;
+    --muted-foreground: 0 0% 69%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 45 100% 51%;
+    --border: 210 15% 15%;
+    --input: 210 15% 15%;
+    --ring: 194 100% 50%;
 
     --radius: 0.5rem;
 
     /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(45 100% 51%), hsl(43 96% 56%));
-    --gradient-radial: radial-gradient(circle at 50% 50%, hsl(45 100% 51% / 0.1), transparent);
+    --gradient-primary: linear-gradient(135deg, hsl(194 100% 50%), hsl(276 88% 53%));
+    --gradient-radial: radial-gradient(circle at 50% 50%, hsl(194 100% 50% / 0.15), transparent);
+    --gradient-hero: linear-gradient(135deg, hsl(210 15% 6%) 0%, hsl(194 100% 50% / 0.1) 50%, hsl(276 88% 53% / 0.1) 100%);
   }
 }
 
@@ -68,8 +69,12 @@ All colors MUST be HSL.
   }
 
   .hero-gradient {
-    background: radial-gradient(circle at 20% 50%, hsl(45 100% 51% / 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, hsl(43 96% 56% / 0.05) 0%, transparent 50%);
+    background: radial-gradient(circle at 20% 50%, hsl(194 100% 50% / 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, hsl(276 88% 53% / 0.08) 0%, transparent 50%);
+  }
+
+  .accent-glow {
+    box-shadow: 0 0 30px hsl(var(--accent-glow) / 0.4);
   }
 }
 

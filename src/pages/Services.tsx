@@ -1,136 +1,217 @@
 import { motion } from "framer-motion";
-import { Globe, Code, Search, TrendingUp, Sparkles } from "lucide-react";
+import { ArrowRight, ShoppingCart, Code, Search, Smartphone, Sparkles, Bot, Zap, Shield } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
-    icon: Globe,
-    title: "Website Building",
-    description:
-      "Custom-designed websites that perfectly represent your brand. From landing pages to complex web applications, we create digital experiences that engage and convert.",
-    features: ["Responsive Design", "User-Centric UX", "Brand Integration", "Fast Performance"],
+    icon: ShoppingCart,
+    title: "Ecommerce Website Design & Development",
+    description: "Build powerful online stores that convert visitors into customers with secure payment integration, inventory management, and seamless checkout experiences.",
+    features: [
+      "Custom ecommerce platform development",
+      "Payment gateway integration (Stripe, PayPal)",
+      "Inventory management systems",
+      "Mobile-responsive shopping experiences",
+      "Conversion rate optimization",
+      "Analytics & tracking setup",
+    ],
   },
   {
     icon: Code,
-    title: "Web Development",
-    description:
-      "Robust, scalable web applications built with modern technologies. We specialize in creating high-performance solutions tailored to your unique business needs.",
-    features: ["React & Next.js", "Custom Solutions", "API Integration", "Cloud Deployment"],
+    title: "Custom Web Development",
+    description: "From simple landing pages to complex web applications, we build scalable, high-performance websites using modern technologies like React, Node.js, and cloud infrastructure.",
+    features: [
+      "React & Next.js development",
+      "Progressive Web Apps (PWA)",
+      "API development & integration",
+      "Database design & optimization",
+      "Cloud hosting & deployment",
+      "Performance optimization",
+    ],
   },
   {
     icon: Search,
-    title: "SEO Optimization",
-    description:
-      "Comprehensive SEO strategies that improve your search rankings and drive organic traffic. We optimize every aspect of your digital presence for maximum visibility.",
-    features: ["Keyword Research", "Technical SEO", "Content Strategy", "Analytics & Reporting"],
+    title: "SEO & Digital Marketing",
+    description: "Increase your online visibility and drive organic traffic with data-driven SEO strategies, content marketing, and targeted digital campaigns.",
+    features: [
+      "Technical SEO audit & optimization",
+      "Keyword research & strategy",
+      "Content marketing & copywriting",
+      "Link building campaigns",
+      "Local SEO optimization",
+      "Analytics & performance tracking",
+    ],
   },
   {
-    icon: TrendingUp,
-    title: "Digital Marketing",
-    description:
-      "Data-driven marketing campaigns that deliver results. From social media to email marketing, we create strategies that grow your audience and boost conversions.",
-    features: ["Social Media", "Email Campaigns", "Content Marketing", "Analytics"],
+    icon: Bot,
+    title: "AI Integration & Automation",
+    description: "Leverage the power of artificial intelligence to automate workflows, enhance user experiences, and gain competitive advantages in your industry.",
+    features: [
+      "AI chatbots & virtual assistants",
+      "Automated content generation",
+      "Predictive analytics & insights",
+      "Process automation solutions",
+      "Machine learning model integration",
+      "Natural language processing",
+    ],
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile App Development",
+    description: "Native and cross-platform mobile applications that deliver seamless experiences on iOS and Android devices, helping you reach customers wherever they are.",
+    features: [
+      "iOS & Android app development",
+      "Cross-platform solutions (React Native)",
+      "App Store optimization",
+      "Push notification systems",
+      "In-app purchase integration",
+      "Offline functionality",
+    ],
   },
   {
     icon: Sparkles,
-    title: "AI Integration",
-    description:
-      "Harness the power of artificial intelligence to automate processes, enhance user experiences, and gain competitive advantages with cutting-edge AI solutions.",
-    features: ["Chatbots", "Automation", "Machine Learning", "Predictive Analytics"],
+    title: "Brand Identity & UI/UX Design",
+    description: "Create compelling brand identities and user interfaces that resonate with your target audience and drive meaningful engagement.",
+    features: [
+      "Logo & brand identity design",
+      "UI/UX design & prototyping",
+      "Design systems & style guides",
+      "User research & testing",
+      "Wireframing & mockups",
+      "Design-to-development handoff",
+    ],
   },
 ];
 
 const Services = () => {
   return (
-    <main className="min-h-screen pt-24 pb-20 px-4">
-      <div className="container mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Our <span className="text-gradient">Services</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive digital solutions designed to elevate your business and drive sustainable growth
-          </p>
-        </motion.div>
-
-        {/* Services Grid */}
-        <div className="space-y-12">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="glass-card p-8 rounded-xl hover:glow-primary transition-all duration-300"
-              >
-                <div className="grid md:grid-cols-[auto,1fr] gap-8">
-                  {/* Icon */}
-                  <div className="flex justify-center md:justify-start">
-                    <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-primary to-secondary p-[2px] glow-primary">
-                      <div className="w-full h-full rounded-xl bg-background flex items-center justify-center">
-                        <Icon className="w-10 h-10 text-primary" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="space-y-4">
-                    <h2 className="text-3xl font-bold">{service.title}</h2>
-                    <p className="text-muted-foreground text-lg leading-relaxed">
-                      {service.description}
-                    </p>
-
-                    {/* Features */}
-                    <div className="grid grid-cols-2 gap-3 pt-4">
-                      {service.features.map((feature, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center gap-2 text-sm"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary glow-primary" />
-                          <span className="text-foreground">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+    <main className="min-h-screen pt-24 pb-20">
+      {/* Hero Section */}
+      <section className="px-4 mb-20">
+        <div className="container mx-auto max-w-5xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-card text-sm border border-primary/30 mb-8">
+              <Zap className="w-4 h-4 text-primary" />
+              <span className="text-foreground font-semibold">
+                Comprehensive Digital Solutions
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              Our <span className="text-gradient">Services</span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Transform your digital presence with our full-stack development, design, and marketing services. From concept to launch, we've got you covered.
+            </p>
+          </motion.div>
         </div>
+      </section>
 
-        {/* CTA Section */}
+      {/* Services Grid */}
+      <section className="px-4">
+        <div className="container mx-auto max-w-7xl">
+          <div className="space-y-16">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              const isEven = index % 2 === 0;
+              
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className={`grid md:grid-cols-2 gap-12 items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}
+                >
+                  {/* Icon & Title Side */}
+                  <div className={`space-y-6 ${!isEven ? 'md:order-2' : ''}`}>
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center glow-primary">
+                      <Icon className="w-10 h-10 text-primary" />
+                    </div>
+                    <div>
+                      <h2 className="text-3xl md:text-4xl font-bold mb-4">{service.title}</h2>
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                    <Button
+                      size="lg"
+                      className="glow-primary"
+                      asChild
+                    >
+                      <Link to="/contact">
+                        Get Started
+                        <ArrowRight className="ml-2 w-5 h-5" />
+                      </Link>
+                    </Button>
+                  </div>
+
+                  {/* Features Side */}
+                  <div className={`glass-card p-8 rounded-2xl ${!isEven ? 'md:order-1' : ''}`}>
+                    <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                      <Shield className="w-5 h-5 text-primary" />
+                      What's Included
+                    </h3>
+                    <ul className="space-y-4">
+                      {service.features.map((feature, featureIndex) => (
+                        <motion.li
+                          key={featureIndex}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: featureIndex * 0.05 }}
+                          className="flex items-start gap-3"
+                        >
+                          <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+                            <div className="w-2 h-2 rounded-full bg-primary" />
+                          </div>
+                          <span className="text-muted-foreground">{feature}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-4 mt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-20 text-center glass-card p-12 rounded-xl"
+          className="container mx-auto max-w-4xl glass-card p-12 rounded-2xl text-center relative overflow-hidden"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to <span className="text-gradient">Get Started?</span>
-          </h2>
-          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
-            Let's discuss how our services can help transform your digital presence and achieve your business goals
-          </p>
-          <motion.a
-            href="/contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary rounded-lg text-white font-semibold glow-primary transition-all duration-300"
-          >
-            Contact Us Today
-          </motion.a>
+          <div className="absolute inset-0 hero-gradient opacity-50" />
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to Start Your <span className="text-gradient">Project</span>?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Let's discuss how we can help transform your digital presence and achieve your business goals.
+            </p>
+            <Button
+              size="lg"
+              className="glow-primary text-lg px-10"
+              asChild
+            >
+              <Link to="/contact">
+                Get a Free Quote
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </Button>
+          </div>
         </motion.div>
-      </div>
+      </section>
     </main>
   );
 };

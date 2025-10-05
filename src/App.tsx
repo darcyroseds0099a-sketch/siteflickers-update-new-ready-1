@@ -27,8 +27,8 @@ const App = () => (
           <DotGrid
             dotSize={10}
             gap={15}
-            baseColor="#FFC107"
-            activeColor="#FFC107"
+            baseColor="#00C6FF"
+            activeColor="#A020F0"
             proximity={120}
             shockRadius={250}
             shockStrength={5}
