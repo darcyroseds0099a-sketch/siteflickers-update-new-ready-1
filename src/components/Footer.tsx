@@ -10,7 +10,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-primary">Siteflickers LLC</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <span className="text-xl font-bold text-primary-foreground">S</span>
+              </div>
+              <h3 className="text-lg font-bold text-gradient">Siteflickers</h3>
+            </div>
             <p className="text-muted-foreground text-sm">
               Delivering cutting-edge digital solutions including web development, SEO, digital marketing, and AI integration.
             </p>
@@ -104,20 +109,20 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-3 text-sm">
                 <Mail size={18} className="text-primary mt-0.5 flex-shrink-0" />
-                <a href="mailto:info@siteflickers.com" className="text-muted-foreground hover:text-primary transition-colors">
-                  info@siteflickers.com
+                <a href="mailto:siteflicker@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  siteflicker@gmail.com
                 </a>
               </li>
               <li className="flex items-start space-x-3 text-sm">
                 <Phone size={18} className="text-primary mt-0.5 flex-shrink-0" />
-                <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                  +1 (234) 567-890
+                <a href="tel:+18472007458" className="text-muted-foreground hover:text-primary transition-colors">
+                  +1 (847) 200-7458
                 </a>
               </li>
               <li className="flex items-start space-x-3 text-sm">
                 <MapPin size={18} className="text-primary mt-0.5 flex-shrink-0" />
                 <span className="text-muted-foreground">
-                  123 Business St, Suite 100<br />New York, NY 10001
+                  Harrisonville, Missouri
                 </span>
               </li>
             </ul>

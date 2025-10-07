@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import Navigation from "./components/Navigation";
 import DotGrid from "./components/DotGrid";
 import Footer from "./components/Footer";
+import CustomerSupportChat from "./components/CustomerSupportChat";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
@@ -49,6 +50,7 @@ const App = () => (
               </Routes>
             </AnimatePresence>
             <Footer />
+            <CustomerSupportChat />
           </div>
         </div>
       </BrowserRouter>

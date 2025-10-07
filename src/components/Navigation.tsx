@@ -26,13 +26,16 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <motion.img
-              src="/src/assets/siteflickers-logo.png"
-              alt="Siteflickers Logo"
-              className="h-10 w-auto"
+            <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
-            />
+              className="flex items-center gap-3"
+            >
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <span className="text-xl font-bold text-primary-foreground">S</span>
+              </div>
+              <span className="text-xl font-bold text-gradient hidden sm:inline">Siteflickers</span>
+            </motion.div>
           </Link>
 
           {/* Desktop Navigation */}
