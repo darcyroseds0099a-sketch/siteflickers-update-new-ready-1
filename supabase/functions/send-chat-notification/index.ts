@@ -33,7 +33,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Siteflickers Chat <onboarding@resend.dev>",
-        to: ["your-admin-email@example.com"], // Replace with your actual email
+        to: ["siteflicker@gmail.com"],
         subject: `New Chat Message from ${userName}`,
         html: `
           <h2>New Chat Message</h2>
