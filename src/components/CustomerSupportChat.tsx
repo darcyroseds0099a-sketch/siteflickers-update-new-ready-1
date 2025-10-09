@@ -33,7 +33,7 @@ const CustomerSupportChat = () => {
   }, [isOpen, hasSetInfo, sessionId]);
 
   const loadMessages = async () => {
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
       .from('chat_messages')
       .select('*')
       .eq('session_id', sessionId)
@@ -47,7 +47,7 @@ const CustomerSupportChat = () => {
   };
 
   const subscribeToMessages = () => {
-    const channel = supabase
+    const channel = (supabase as any)
       .channel(`chat_${sessionId}`)
       .on(
         'postgres_changes',
@@ -57,7 +57,7 @@ const CustomerSupportChat = () => {
           table: 'chat_messages',
           filter: `session_id=eq.${sessionId}`
         },
-        (payload) => {
+        (payload: any) => {
           setMessages(prev => [...prev, payload.new as ChatMessage]);
         }
       )
@@ -83,7 +83,7 @@ const CustomerSupportChat = () => {
 
     if (message.trim()) {
       try {
-        const { error } = await supabase
+        const { error } = await (supabase as any)
           .from('chat_messages')
           .insert({
             session_id: sessionId,
