@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import MagicBento from "./MagicBento";
+import logo from "@/assets/siteflickers-logo-new.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,9 +32,11 @@ const Navigation = () => {
               transition={{ type: "spring", stiffness: 400 }}
               className="flex items-center gap-3"
             >
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-xl font-bold text-primary-foreground">S</span>
-              </div>
+              <img 
+                src={logo}
+                alt="Siteflickers Logo"
+                className="h-10 w-auto cursor-pointer"
+              />
               <span className="text-xl font-bold text-gradient hidden sm:inline">Siteflickers</span>
             </motion.div>
           </Link>
@@ -80,7 +83,7 @@ const Navigation = () => {
               className="rounded-lg"
             >
               <Button variant="default" className="glow-primary" asChild>
-                <Link to="/contact">Get Started</Link>
+                <Link to="/pricing">Get Started</Link>
               </Button>
             </MagicBento>
           </div>
@@ -119,7 +122,7 @@ const Navigation = () => {
                   </Link>
                 ))}
                 <Button variant="default" className="glow-primary w-full" asChild>
-                  <Link to="/contact" onClick={() => setIsOpen(false)}>
+                  <Link to="/pricing" onClick={() => setIsOpen(false)}>
                     Get Started
                   </Link>
                 </Button>

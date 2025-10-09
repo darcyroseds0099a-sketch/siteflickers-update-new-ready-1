@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.animated-gradient {
+  background: linear-gradient(-45deg, #0a0a1f, #1a1a3e, #0f0f2e, #1e1e4a);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */

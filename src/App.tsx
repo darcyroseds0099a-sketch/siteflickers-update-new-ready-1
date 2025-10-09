@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Navigation from "./components/Navigation";
-import DotGrid from "./components/DotGrid";
 import Footer from "./components/Footer";
 import CustomerSupportChat from "./components/CustomerSupportChat";
 import Home from "./pages/Home";
@@ -24,18 +23,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="min-h-screen w-full relative">
-          <DotGrid
-            dotSize={10}
-            gap={15}
-            baseColor="#00C6FF"
-            activeColor="#A020F0"
-            proximity={120}
-            shockRadius={250}
-            shockStrength={5}
-            resistance={750}
-            returnDuration={1.5}
-          />
+        <div className="min-h-screen w-full relative overflow-hidden">
+          <div className="fixed inset-0 -z-10 animated-gradient" />
           <div className="relative z-10">
             <Navigation />
             <AnimatePresence mode="wait">

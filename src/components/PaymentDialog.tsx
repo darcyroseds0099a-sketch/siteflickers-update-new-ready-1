@@ -23,14 +23,21 @@ const PaymentDialog = ({ open, onOpenChange, planName, price }: PaymentDialogPro
     setSelectedMethod(method);
     
     if (method === "paypal") {
-      // Redirect to PayPal - you'll need to integrate PayPal API with Cloud
-      window.open("https://www.paypal.com/paypalme/yourpaypalhandle", "_blank");
+      // Replace with your PayPal.me link or Gmail for payment
+      const paypalEmail = "your-email@gmail.com"; // Replace with your actual Gmail
+      const amount = price.replace('$', '').replace(',', '');
+      const subject = encodeURIComponent(`Payment for ${planName}`);
+      const body = encodeURIComponent(`I would like to purchase the ${planName} plan for ${price}.\n\nPlease send me the payment details.`);
+      
+      // Open Gmail compose with payment details
+      window.open(`https://mail.google.com/mail/?view=cm&to=${paypalEmail}&su=${subject}&body=${body}`, "_blank");
+      
       setTimeout(() => {
         onOpenChange(false);
         setSelectedMethod(null);
       }, 500);
     } else {
-      // For card payments, you'll need Stripe integration with Cloud
+      // For card payments
       setTimeout(() => {
         onOpenChange(false);
         setSelectedMethod(null);

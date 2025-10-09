@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import logo from "@/assets/siteflickers-logo-new.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,12 +11,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-xl font-bold text-primary-foreground">S</span>
-              </div>
+            <Link to="/" className="flex items-center gap-3 mb-4 group">
+              <img 
+                src={logo}
+                alt="Siteflickers Logo"
+                className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
+              />
               <h3 className="text-lg font-bold text-gradient">Siteflickers</h3>
-            </div>
+            </Link>
             <p className="text-muted-foreground text-sm">
               Delivering cutting-edge digital solutions including web development, SEO, digital marketing, and AI integration.
             </p>

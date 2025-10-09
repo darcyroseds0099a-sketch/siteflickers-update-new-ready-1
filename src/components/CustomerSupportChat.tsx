@@ -1,19 +1,124 @@
-import { useState } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { MessageCircle, X, Send } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+
+interface ChatMessage {
+  id: string;
+  message: string;
+  sender_type: string;
+  user_name: string | null;
+  created_at: string;
+}
 
 const CustomerSupportChat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+  const [hasSetInfo, setHasSetInfo] = useState(false);
+  const { toast } = useToast();
 
-  const handleSend = () => {
+  useEffect(() => {
+    if (isOpen && hasSetInfo) {
+      loadMessages();
+      const unsubscribe = subscribeToMessages();
+      return unsubscribe;
+    }
+  }, [isOpen, hasSetInfo, sessionId]);
+
+  const loadMessages = async () => {
+    const { data, error } = await supabase
+      .from('chat_messages')
+      .select('*')
+      .eq('session_id', sessionId)
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      console.error('Error loading messages:', error);
+    } else {
+      setMessages(data || []);
+    }
+  };
+
+  const subscribeToMessages = () => {
+    const channel = supabase
+      .channel(`chat_${sessionId}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'chat_messages',
+          filter: `session_id=eq.${sessionId}`
+        },
+        (payload) => {
+          setMessages(prev => [...prev, payload.new as ChatMessage]);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  };
+
+  const handleSend = async () => {
+    if (!hasSetInfo) {
+      if (!userName.trim() || !userEmail.trim()) {
+        toast({
+          title: "Please enter your name and email",
+          variant: "destructive",
+        });
+        return;
+      }
+      setHasSetInfo(true);
+      return;
+    }
+
     if (message.trim()) {
-      // In a real implementation, this would send the message to your support system
-      console.log("Message sent:", message);
-      setMessage("");
+      try {
+        const { error } = await supabase
+          .from('chat_messages')
+          .insert({
+            session_id: sessionId,
+            sender_type: 'user',
+            message: message.trim(),
+            user_name: userName,
+            user_email: userEmail,
+          });
+
+        if (error) throw error;
+
+        // Send email notification
+        await supabase.functions.invoke('send-chat-notification', {
+          body: {
+            userName,
+            userEmail,
+            message: message.trim(),
+            sessionId,
+          },
+        });
+
+        setMessage("");
+        
+        toast({
+          title: "Message sent!",
+          description: "We'll get back to you soon.",
+        });
+      } catch (error) {
+        console.error('Error sending message:', error);
+        toast({
+          title: "Error sending message",
+          description: "Please try again.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -42,7 +147,7 @@ const CustomerSupportChat = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 glass-card rounded-2xl shadow-2xl overflow-hidden"
+            className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 glass-card rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[500px]"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-primary to-accent p-4">
@@ -55,38 +160,61 @@ const CustomerSupportChat = () => {
             </div>
 
             {/* Chat Area */}
-            <div className="p-4 bg-card/95 backdrop-blur-sm h-64 overflow-y-auto">
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shrink-0">
-                    <span className="text-xs font-bold text-primary-foreground">S</span>
-                  </div>
-                  <div className="glass-card p-3 rounded-lg max-w-[80%]">
-                    <p className="text-sm text-foreground">
-                      Hi there! 👋 How can we help you today?
-                    </p>
-                  </div>
+            <div className="flex-1 p-4 overflow-y-auto bg-card/95 backdrop-blur-sm">
+              {!hasSetInfo ? (
+                <div className="space-y-4">
+                  <p className="text-sm text-muted-foreground">Please enter your details to start chatting:</p>
+                  <Input
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    placeholder="Your name"
+                    className="glass-card"
+                  />
+                  <Input
+                    value={userEmail}
+                    onChange={(e) => setUserEmail(e.target.value)}
+                    placeholder="Your email"
+                    type="email"
+                    className="glass-card"
+                  />
                 </div>
-              </div>
+              ) : (
+                <div className="space-y-3">
+                  {messages.map((msg) => (
+                    <div
+                      key={msg.id}
+                      className={`p-3 rounded-lg ${
+                        msg.sender_type === 'user'
+                          ? 'bg-primary/20 ml-8'
+                          : 'bg-secondary/20 mr-8'
+                      }`}
+                    >
+                      <p className="text-xs text-muted-foreground mb-1">
+                        {msg.sender_type === 'user' ? 'You' : 'Support'}
+                      </p>
+                      <p className="text-sm text-foreground">{msg.message}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-
+            
             {/* Input Area */}
-            <div className="p-4 bg-card/95 backdrop-blur-sm border-t border-border/50">
+            <div className="p-4 border-t border-border/50 bg-card/95 backdrop-blur-sm">
               <div className="flex gap-2">
                 <Input
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && handleSend()}
-                  placeholder="Type your message..."
-                  className="flex-1 glass-card"
+                  placeholder={hasSetInfo ? "Type your message..." : "Click send to continue"}
+                  className="glass-card"
+                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 />
-                <Button
+                <Button 
                   onClick={handleSend}
                   size="icon"
                   className="glow-primary shrink-0"
-                  disabled={!message.trim()}
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="h-4 w-4" />
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground mt-2 text-center">
