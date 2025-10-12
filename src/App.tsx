@@ -13,6 +13,7 @@ import Portfolio from "./pages/Portfolio";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import AdminChat from "./pages/AdminChat";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/admin/chat" element={<AdminChat />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </AnimatePresence>
