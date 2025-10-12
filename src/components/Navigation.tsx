@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import MagicBento from "./MagicBento";
+import ClickSpark from "./ClickSpark";
 import logo from "@/assets/siteflickers-logo-new.png";
 
 const Navigation = () => {
@@ -82,9 +83,17 @@ const Navigation = () => {
               glowColor="132, 0, 255"
               className="rounded-lg"
             >
-              <Button variant="default" className="glow-primary" asChild>
-                <Link to="/pricing">Get Started</Link>
-              </Button>
+              <ClickSpark
+                sparkColor="hsl(194, 100%, 50%)"
+                sparkSize={8}
+                sparkRadius={20}
+                sparkCount={10}
+                duration={500}
+              >
+                <Button variant="default" className="glow-primary" asChild>
+                  <Link to="/pricing">Get Started</Link>
+                </Button>
+              </ClickSpark>
             </MagicBento>
           </div>
 

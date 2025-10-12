@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Scene3D from "@/components/Scene3D";
 import Testimonials from "@/components/Testimonials";
+import ClickSpark from "@/components/ClickSpark";
 
 const Home = () => {
   const stats = [
@@ -111,24 +112,40 @@ const Home = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button
-                  size="lg"
-                  className="glow-primary text-lg px-10 py-7 text-primary-foreground font-bold"
-                  asChild
+                <ClickSpark
+                  sparkColor="hsl(194, 100%, 50%)"
+                  sparkSize={12}
+                  sparkRadius={30}
+                  sparkCount={15}
+                  duration={700}
                 >
-                  <Link to="/contact">
-                    Get a Free Quote Today!
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-lg px-10 py-7 glass-card border-accent/40 hover:border-accent accent-glow hover:bg-accent/10 font-bold"
-                  asChild
+                  <Button
+                    size="lg"
+                    className="glow-primary text-base sm:text-lg px-6 sm:px-10 py-6 sm:py-7 text-primary-foreground font-bold w-full sm:w-auto"
+                    asChild
+                  >
+                    <Link to="/contact">
+                      Get a Free Quote Today!
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </Link>
+                  </Button>
+                </ClickSpark>
+                <ClickSpark
+                  sparkColor="hsl(276, 88%, 53%)"
+                  sparkSize={10}
+                  sparkRadius={25}
+                  sparkCount={12}
+                  duration={600}
                 >
-                  <Link to="/services">Explore Our Services</Link>
-                </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="text-base sm:text-lg px-6 sm:px-10 py-6 sm:py-7 glass-card border-accent/40 hover:border-accent accent-glow hover:bg-accent/10 font-bold w-full sm:w-auto"
+                    asChild
+                  >
+                    <Link to="/services">Explore Our Services</Link>
+                  </Button>
+                </ClickSpark>
               </div>
 
               <div className="flex items-center justify-center gap-6 pt-6 text-sm text-muted-foreground">
@@ -271,12 +288,20 @@ const Home = () => {
               <p className="text-muted-foreground mb-6 max-w-2xl">
                 Our team crafts stunning digital experiences that captivate and convert. Let's bring your vision to life together.
               </p>
-              <Button size="lg" className="glow-primary" asChild>
-                <Link to="/contact">
-                  Start Your Journey with Us Today!
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-              </Button>
+              <ClickSpark
+                sparkColor="hsl(194, 100%, 50%)"
+                sparkSize={10}
+                sparkRadius={20}
+                sparkCount={10}
+                duration={500}
+              >
+                <Button size="lg" className="glow-primary" asChild>
+                  <Link to="/contact">
+                    Start Your Journey with Us Today!
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
+                </Button>
+              </ClickSpark>
             </div>
           </motion.div>
         </div>
@@ -520,16 +545,24 @@ const Home = () => {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Let's create something <span className="text-gradient">amazing together</span>
             </h2>
-            <Button
-              size="lg"
-              className="glow-primary text-xl px-12 py-8 font-bold"
-              asChild
+            <ClickSpark
+              sparkColor="hsl(194, 100%, 50%)"
+              sparkSize={14}
+              sparkRadius={35}
+              sparkCount={18}
+              duration={800}
             >
-              <Link to="/contact">
-                Get a Free Quote
-                <ArrowRight className="ml-2 w-6 h-6" />
-              </Link>
-            </Button>
+              <Button
+                size="lg"
+                className="glow-primary text-lg sm:text-xl px-8 sm:px-12 py-6 sm:py-8 font-bold w-full sm:w-auto"
+                asChild
+              >
+                <Link to="/contact">
+                  Get a Free Quote
+                  <ArrowRight className="ml-2 w-5 sm:w-6 h-5 sm:h-6" />
+                </Link>
+              </Button>
+            </ClickSpark>
           </motion.div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import { Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import PaymentDialog from "@/components/PaymentDialog";
+import ClickSpark from "@/components/ClickSpark";
 
 const Pricing = () => {
   const navigate = useNavigate();
@@ -141,16 +142,24 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <Button
-                onClick={() => setSelectedPlan({ name: pkg.name, price: pkg.price })}
-                className={`w-full ${
-                  pkg.popular ? "glow-primary" : ""
-                }`}
-                variant={pkg.popular ? "default" : "outline"}
-                size="lg"
+              <ClickSpark
+                sparkColor={pkg.popular ? "hsl(194, 100%, 50%)" : "hsl(276, 88%, 53%)"}
+                sparkSize={10}
+                sparkRadius={20}
+                sparkCount={10}
+                duration={500}
               >
-                Get This Plan
-              </Button>
+                <Button
+                  onClick={() => setSelectedPlan({ name: pkg.name, price: pkg.price })}
+                  className={`w-full ${
+                    pkg.popular ? "glow-primary" : ""
+                  }`}
+                  variant={pkg.popular ? "default" : "outline"}
+                  size="lg"
+                >
+                  Get This Plan
+                </Button>
+              </ClickSpark>
             </motion.div>
           ))}
         </div>
@@ -169,13 +178,21 @@ const Pricing = () => {
             Every business is unique. Let's discuss a tailored package that
             perfectly fits your needs and budget.
           </p>
-          <Button
-            onClick={() => navigate("/contact")}
-            size="lg"
-            className="glow-primary"
+          <ClickSpark
+            sparkColor="hsl(194, 100%, 50%)"
+            sparkSize={12}
+            sparkRadius={25}
+            sparkCount={12}
+            duration={600}
           >
-            Contact Us for Custom Quote
-          </Button>
+            <Button
+              onClick={() => navigate("/contact")}
+              size="lg"
+              className="glow-primary"
+            >
+              Contact Us for Custom Quote
+            </Button>
+          </ClickSpark>
         </motion.div>
       </div>
 
